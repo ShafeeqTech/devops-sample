@@ -19,6 +19,12 @@ TOKEN=$token
 REPO_OWNER=$1
 REPO_NAME=$2
 
+# Validate arguments before proceeding
+helper "$@"
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
 # Function to make a GET request to the GitHub API
 function github_api_get {
     local endpoint="$1"
